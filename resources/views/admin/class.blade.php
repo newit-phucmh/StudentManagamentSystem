@@ -25,7 +25,6 @@
         <div class="container-fluid mt-4">
             <div class="row justify-content-center">
                 <section class="col-md-8">
-                    @include("studentslist")
                     @include("classlist")
                 </section>
             </div>
@@ -35,7 +34,7 @@
     <div class="container-fluid mt-4 " id="create-form">
         <div class="row">
             <section class="col-md-7">
-                @include("studentslist")
+                @include("classlist")
             </section>
             <section class="col-md-5">
 
@@ -43,35 +42,13 @@
                     <img src="https://st.depositphotos.com/1007989/2641/i/600/depositphotos_26419797-stock-photo-children-reading-books.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Enter the informations of the new student</h5>
-                        <form action="{{ url('/admin/store') }}" method="post">
+                        <form action="{{ url('/admin/class/store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label>Email</label>
-                                <input name="email" type="text" class="form-control"  placeholder="Enter email">
-                                <span class="text-danger">@error('email'){{ $message }} @enderror</span>
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input name="password" type="password" class="form-control"  placeholder="Enter password">
-                            </div>
-                            <div class="form-group">
-                              <label>Class ID</label>
-                              <input name="class_object_id" type="text" class="form-control"  placeholder="Enter class ID">
-                            </div>
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input name="firstName" type="text" class="form-control"  placeholder="Enter the first name">
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input name="lastName" type="text" class="form-control"  placeholder="Enter the last name">
+                                <label>Class name</label>
+                                <input name="class_name" type="text" class="form-control"  placeholder="Enter class name">
                             </div>
                             
-                            <div class="form-group">
-                                <label>Age</label>
-                                <input name="age" type="text" class="form-control"  placeholder="Enter the Age">
-                            </div>
-                          
                             <input type="submit" class="btn btn-info" value="Submit">
                             <input type="reset" class="btn btn-warning" value="Reset">
 
@@ -86,7 +63,7 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col">
-                @include("studentslist")
+                @include("classlist")
             </section>
             <section class="col"></section>
         </div>
@@ -95,40 +72,25 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col-md-7">
-                @include("studentslist")
+                @include("classlist")
             </section>
             <section class="col-md-5">
                 <div class="card mb-3">
                     <img src="https://marketplace.canva.com/MAB7yqsko0c/1/screen_2x/canva-smart-little-schoolgirl--MAB7yqsko0c.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Update informations of student</h5>
-                        <form action="{{ url('/admin/update/'.$student->id) }}" method="post">
+                        <h5 class="card-title">Update informations of class</h5>
+                        <form action="{{ url('/admin/class/update/'.$class->id) }}" method="post">
                             @csrf
-                            
                             <div class="form-group">
-                                <label>Email</label>
-                                <input readonly value="{{ $student->email }}" name="email" type="text" class="form-control"  placeholder="Enter email">
+                                <label>Class ID</label>
+                                <input readonly value="{{ $class->id }}" name="id" type="text" class="form-control">
                             </div>
 
                             <div class="form-group">
-                              <label>Class ID</label>
-                              <input value="{{ $student->class_object_id }}" name="class_object_id" type="text" class="form-control"  placeholder="Enter class ID">
+                                <label>Class name</label>
+                                <input value="{{ $class->class_name }}" name="class_name" type="text" class="form-control">
                             </div>
 
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input value="{{ $student->firstName }}" name="firstName" type="text" class="form-control"  placeholder="Enter the first name">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input value="{{ $student->lastName }}" name="lastName" type="text" class="form-control"  placeholder="Enter last name">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Age</label>
-                                <input value="{{ $student->age }}" name="age" type="text" class="form-control"  placeholder="Enter the Age">
-                            </div>
                             <input type="submit" class="btn btn-info" value="Update">
                             <input type="reset" class="btn btn-warning" value="Reset">
 

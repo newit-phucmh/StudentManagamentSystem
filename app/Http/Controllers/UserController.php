@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ClassObject;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,8 @@ class UserController extends Controller
     public function index()
     {
         $students = User::all();
-        $data = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))->first()];
-        return view('admin.student', ['students' => $students, 'layout'=> 'index', 'LoggedUserInfo' => $data]);
+        $classes = ClassObject::all();
+        return view('admin.student', ['students' => $students, 'classes'=>$classes, 'layout'=> 'index']);
     }
 
     /**
@@ -46,13 +47,11 @@ class UserController extends Controller
         $request->validate([
             'firstName'=>'required',
             'email'=>'required|email|unique:users',
-            'password'=>'required|min:5|max:12',
-            'student_id'=>'required'
+            'password'=>'required|min:5|max:12'
         ]);
 
         $student = new User();
-        $student->student_id = $request -> input('student_id');
-        $student->class_id = $request -> input('class_id');
+        $student->class_object_id = $request -> input('class_object_id');
         $student->firstName = $request -> input('firstName');
         $student->lastName = $request -> input('lastName');
         $student->age = $request -> input('age');
@@ -103,13 +102,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'firstName'=>'required',
-            'student_id'=>'required'
+            'firstName'=>'required'
         ]);
 
         $student = User::find($id);
-        $student->student_id = $request -> input('student_id');
-        $student->class_id = $request -> input('class_id');
+        $student->class_object_id = $request -> input('class_object_id');
         $student->firstName = $request -> input('firstName');
         $student->lastName = $request -> input('lastName');
         $student->age = $request -> input('age');
@@ -137,6 +134,12 @@ class UserController extends Controller
         return redirect('admin/');
     }
 
+    public function test()
+    {
+        $class = User::find(1)->classObject;
+        return $class;
+    }
+
     //API
     function register(Request $request){
         //Validate requests
@@ -144,7 +147,6 @@ class UserController extends Controller
             'firstName'=>'required',
             'email'=>'required|email|unique:users',
             'password'=>'required|min:5|max:12',
-            'student_id'=>'required'
         ]);
 
         if($validator->fails()){
@@ -154,7 +156,7 @@ class UserController extends Controller
          //Insert data into database
          $student = new User();
          $student->student_id = $request -> input('student_id');
-         $student->class_id = $request -> input('class_id');
+         $student->class_object_id = $request -> input('class_object_id');
          $student->firstName = $request -> input('firstName');
          $student->lastName = $request -> input('lastName');
          $student->age = $request -> input('age');
@@ -187,7 +189,6 @@ class UserController extends Controller
             if (! $token = auth()->attempt($validator->validated())) {
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
-            
             return $this -> createNewToken($token);
             
         }

@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-
+Route::get('/test',[App\Http\Controllers\UserController::class,'test']);
 
 Route::post('/auth/save',[AuthenticationController::class, 'save'])->name('auth.save');
 Route::post('/auth/check',[AuthenticationController::class, 'check'])->name('auth.check');
@@ -44,4 +44,12 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::post('admin/store', [App\Http\Controllers\UserController::class, 'store']);
     Route::post('admin/update/{id}', [App\Http\Controllers\UserController::class, 'update']);
     Route::get('admin/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+
+    Route::get('admin/class', [App\Http\Controllers\ClassController::class, 'index']);
+    Route::get('admin/class/edit/{id}', [App\Http\Controllers\ClassController::class, 'edit']);
+    Route::get('admin/class/show/{id}', [App\Http\Controllers\ClassController::class, 'show']);
+    Route::get('admin/class/create', [App\Http\Controllers\ClassController::class, 'create']);
+    Route::post('admin/class/store', [App\Http\Controllers\ClassController::class, 'store']);
+    Route::post('admin/class/update/{id}', [App\Http\Controllers\ClassController::class, 'update']);
+    Route::get('admin/class/delete/{id}', [App\Http\Controllers\ClassController::class, 'destroy']);
 });

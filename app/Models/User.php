@@ -8,15 +8,23 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\ClassObject;
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-    public function class()
+    /**
+     * Get the classObject that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function classObject()
     {
-        return $this->hasOne('App\Models\Classes');
+        return $this->belongsTo(ClassObject::class);
     }
+
+    
 
     public function generateToken()
     {

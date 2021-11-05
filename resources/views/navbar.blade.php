@@ -6,7 +6,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{{url('admin/')}}">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link " href="{{url('admin/create/')}}">Create</a>
+            <a class="nav-item nav-link " href="{{url('admin/create/')}}">Add Student</a>
+            <a class="nav-item nav-link " href="{{url('admin/class/create/')}}">Add Class</a>
+            <a class="nav-item nav-link " href="{{url('admin/create/')}}">Add Course</a>
             <a class="nav-item nav-link " href="{{url('auth/logout/')}}">Logout</a>
         </div>
     </div>

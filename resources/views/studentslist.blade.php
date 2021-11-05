@@ -7,7 +7,6 @@
       <table class="table">
         <thead class="thead-light">
             <tr>
-                <th scope="col">Student ID</th>
                 <th scope="col">Class ID</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
@@ -20,8 +19,7 @@
         <tbody>
             @foreach ($students as $student)
             <tr>
-                <td>{{$student->student_id}}</td>
-                <td>{{$student->class_id}}</td>
+                <td>{{$student->class_object_id}}</td>
                 <td>{{$student->firstName}}</td>
                 <td>{{$student->lastName}}</td>
                 <td>{{$student->email}}</td>
