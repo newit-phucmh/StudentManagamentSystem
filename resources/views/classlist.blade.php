@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col">Class ID</th>
                 <th scope="col">Class Name</th>
+                <th scope="col">          </th>
                 <th scope="col">Operations</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
             <tr>
                 <td>{{$class->id}}</td>
                 <td>{{$class->class_name}}</td>
+                <td>          </td>
                 <td>
                      <a href="{{url('admin/class/edit/'.$class->id)}}" class="btn btn-sm btn-warning">Edit</a>
                      <a href="{{url('admin/class/delete/'.$class->id)}}" class="btn btn-sm btn-danger">Delete</a>

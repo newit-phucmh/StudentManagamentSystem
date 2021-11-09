@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ClassObject;
+use App\Models\Course;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 
 class UserController extends Controller
@@ -21,8 +23,9 @@ class UserController extends Controller
     public function index()
     {
         $students = User::all();
+        $courses = Course::all();
         $classes = ClassObject::all();
-        return view('admin.student', ['students' => $students, 'classes'=>$classes, 'layout'=> 'index']);
+        return view('admin.student', ['students' => $students, 'classes'=>$classes, 'courses' => $courses, 'layout'=> 'index']);
     }
 
     /**
@@ -134,11 +137,7 @@ class UserController extends Controller
         return redirect('admin/');
     }
 
-    public function test()
-    {
-        $class = User::find(1)->classObject;
-        return $class;
-    }
+    
 
     //API
     function register(Request $request){
@@ -194,6 +193,17 @@ class UserController extends Controller
         }
     }
 
+    
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout() {
+        auth()->logout();
+        return response()->json(['message' => 'User successfully signed out']);
+    }
+
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,
@@ -201,6 +211,12 @@ class UserController extends Controller
             'expires_in' => auth('api')->factory()->getTTL(),
             'user' => auth()->user()
         ]);
+    }
+
+    public function getClass()
+    {
+        $class = User::find(1)->classObject;
+        return $class;
     }
 
 }

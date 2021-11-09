@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ClassObject;
+use App\Models\Course;
 
 class Checkin extends Model
 {
@@ -14,9 +16,19 @@ class Checkin extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function courses(): HasMany
+    public function courses()
     {
-        return $this->hasMany('App\Models\Course');
+        return $this->hasMany(Course::class);
+    }
+
+    /**
+     * Get all of the classes for the Checkin
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function classes()
+    {
+        return $this->hasMany(ClassObject::class);
     }
 
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\CheckinController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -24,20 +25,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/class', [UserController::class, 'getClass']);
+Route::group(['middleware'=>['auth:api']], function(){
+    Route::get('/student', [ClassController::class, 'getUser']);
+    Route::post('/student/checkin', [CheckinController::class, 'checkin']);
+    Route::get('/student/profile', [ClassController::class, 'get']);
+});
 
-
-
-Route::post('/class_register', [ClassController::class, 'store']); 
 
 
 
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
-
 ], function ($router) {
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/register', [UserController::class, 'register']);  
+    Route::post('/logout', [UserController::class, 'logout']);
 });
 

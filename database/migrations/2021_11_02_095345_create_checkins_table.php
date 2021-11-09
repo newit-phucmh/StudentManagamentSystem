@@ -15,7 +15,7 @@ class CreateCheckinsTable extends Migration
     {
         Schema::create('checkins', function (Blueprint $table) {
             $table->id();
-            $table->string('class_object_id');
+            $table->string('user_id');
             $table->string('course_id');
             $table->timestamps();
         });

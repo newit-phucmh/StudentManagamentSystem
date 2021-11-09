@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassObject;
-use Validator;
+use App\Models\Course;
+use Validator; 
 
 class ClassController extends Controller
 {
@@ -19,10 +20,16 @@ class ClassController extends Controller
         return view('admin.class', ['classes' => $classes, 'layout'=> 'index']);
     }
 
-    public function test()
+    public function getUser()
     {
         $user = ClassObject::find(1)->users;
         return $user;
+    }
+
+    public function getCourse()
+    {
+        $courses = ClassObject::find(2)->courses;
+        return $courses;
     }
 
     /**

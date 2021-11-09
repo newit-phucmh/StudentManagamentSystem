@@ -25,8 +25,8 @@
                 <td>{{$student->email}}</td>
                 <td>{{$student->age}}</td>
                 <td>
-                     <a href="{{url('admin/edit/'.$student->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                     <a href="{{url('admin/delete/'.$student->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                     <a href="{{url('admin/student/edit/'.$student->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                     <a href="{{url('admin/student/delete/'.$student->id)}}" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
             @endforeach

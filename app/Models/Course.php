@@ -9,13 +9,15 @@ class Course extends Model
 {
     use HasFactory;
 
-    /**
-     * The roles that belong to the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function classes(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Classes');
-    }
+   /**
+    * Get the class that owns the Course
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+   public function class()
+   {
+       return $this->belongsTo(ClassObject::class);
+   }
+
+
 }
