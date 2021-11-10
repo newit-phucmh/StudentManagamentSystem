@@ -33,7 +33,7 @@ class CourseController extends Controller
 
     public function getClass($id)
     {
-        $class = Course::find($id)->class;
+        $class = Course::find($id)->classObject;
         return $class;
     }
 

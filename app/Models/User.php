@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function classObject()
+    public function class()
     {
         return $this->belongsTo(ClassObject::class);
     }

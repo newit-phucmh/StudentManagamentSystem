@@ -7,9 +7,9 @@
       <table class="table">
         <thead class="thead-light">
             <tr>
-                <th scope="col">Class ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Class</th>
+                <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Age</th>
                 <th scope="col">Operations</th>
@@ -19,9 +19,9 @@
         <tbody>
             @foreach ($students as $student)
             <tr>
-                <td>{{$student->class_object_id}}</td>
-                <td>{{$student->firstName}}</td>
-                <td>{{$student->lastName}}</td>
+                <td>{{$student->id}}</td>
+                <td>{{DB::table('class_objects')->where('id', $student->class_object_id)->value('class_name')}}</td>
+                <td>{{$student->firstName.' '.$student->lastName}}</td>
                 <td>{{$student->email}}</td>
                 <td>{{$student->age}}</td>
                 <td>

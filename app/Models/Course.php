@@ -14,7 +14,7 @@ class Course extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-   public function class()
+   public function classObject()
    {
        return $this->belongsTo(ClassObject::class);
    }

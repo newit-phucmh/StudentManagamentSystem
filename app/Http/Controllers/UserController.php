@@ -215,7 +215,7 @@ class UserController extends Controller
 
     public function getClass()
     {
-        $class = User::find(1)->classObject;
+        $class = User::find(1)->class;
         return $class;
     }
 

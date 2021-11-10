@@ -20,11 +20,12 @@ Route::get('/', function () {
 
 
 Route::get('/test',[App\Http\Controllers\ClassController::class,'getCourse']);
-Route::get('/test/{id}',[App\Http\Controllers\CourseController::class,'getUser']);
+Route::get('/test/{id}',[App\Http\Controllers\CourseController::class,'getClass']);
 
 Route::post('/auth/save',[AuthenticationController::class, 'save'])->name('auth.save');
 Route::post('/auth/check',[AuthenticationController::class, 'check'])->name('auth.check');
 Route::get('/auth/logout',[AuthenticationController::class, 'logout'])->name('auth.logout');
+Route::get('admin/export', [App\Http\Controllers\CheckinController::class, 'export']);
 
 
 
@@ -61,4 +62,6 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::post('admin/course/store', [App\Http\Controllers\CourseController::class, 'store']);
     Route::post('admin/course/update/{id}', [App\Http\Controllers\CourseController::class, 'update']);
     Route::get('admin/course/delete/{id}', [App\Http\Controllers\CourseController::class, 'destroy']);
+
+    Route::get('admin/checkin', [App\Http\Controllers\CheckinController::class, 'index']);
 });
