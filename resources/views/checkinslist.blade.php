@@ -29,6 +29,5 @@
         </tbody>
     </table>
     <a href="{{url('admin/export')}}" class="btn btn-sm btn-warning">Export</a>
-    <a href="{{url('admin/student/delete/')}}" class="btn btn-sm btn-danger">Delete</a>
     </div>
   </div>

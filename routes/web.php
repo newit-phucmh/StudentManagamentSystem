@@ -34,12 +34,9 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/auth/login',[AuthenticationController::class, 'login'])->name('auth.login');
     Route::get('/auth/register',[AuthenticationController::class, 'register'])->name('auth.register');
 
-    Route::get('/admin/dashboard',[AuthenticationController::class, 'dashboard']);
-    Route::get('/admin/settings',[AuthenticationController::class,'settings']);
-    Route::get('/admin/profile',[AuthenticationController::class,'profile']);
-    Route::get('/admin/staff',[AuthenticationController::class,'staff']);
+    Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-    Route::get('admin/', [App\Http\Controllers\UserController::class, 'index']);
+    Route::get('admin/student', [App\Http\Controllers\UserController::class, 'index']);
     Route::get('admin/student/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
     Route::get('admin/student/show/{id}', [App\Http\Controllers\UserController::class, 'show']);
     Route::get('admin/student/create', [App\Http\Controllers\UserController::class, 'create']);

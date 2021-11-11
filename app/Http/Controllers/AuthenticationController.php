@@ -56,7 +56,7 @@ class AuthenticationController extends Controller
             //check password
             if(Hash::check($request->password, $userInfo->password)){
                 $request->session()->put('LoggedUser', $userInfo->id);
-                return redirect('admin/');
+                return redirect('admin/home');
 
             }else{
                 return back()->with('fail','Incorrect password');

@@ -1,6 +1,5 @@
 
 <div class="card mb-3">
-    <img src="https://cdnstepup.r.worldssl.net/wp-content/uploads/2021/02/learn-va-study-3.jpg" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">List of students</h5>
       <p class="card-text">You can find here all the informations about students in the system</p>
@@ -32,6 +31,7 @@
             @endforeach
         </tbody>
     </table>
+    <a href="{{url('admin/student/create')}}" class="btn btn-sm btn-warning">Add student</a>
     </div>
   </div>
         

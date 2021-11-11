@@ -75,7 +75,6 @@ class CheckinController extends Controller
             $checkin_info->course=DB::table('courses')->where('id', $request->course_id)->value('course_name');
             $checkin_info->email=DB::table('users')->where('id', $request->user_id)->value('email');
             
-
             $class_req=DB::table('users')->where('id', $request->user_id)->value('class_object_id');
             $class_course=Course::find($request->course_id)->classObject;    
 

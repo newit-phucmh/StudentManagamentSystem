@@ -64,7 +64,7 @@ class ClassController extends Controller
         $save=$class->save();
 
         if ($save){
-            return redirect('/admin');
+            return redirect('/admin/class');
         } else {
             return view('admin.class',['classes'=>$classes, 'layout'=>'create']);
         }
@@ -118,7 +118,7 @@ class ClassController extends Controller
         $save=$class->save();
 
         if ($save){
-            return redirect('/admin');
+            return redirect('/admin/class');
         } else {
             return view('admin.class',['classes'=>$classes, 'layout'=>'edit']);
         }
@@ -134,6 +134,6 @@ class ClassController extends Controller
     {
         $class = ClassObject::find($id);
         $class->delete();
-        return redirect('/admin');
+        return redirect('/admin/class');
     }
 }

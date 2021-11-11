@@ -27,6 +27,7 @@
             @endforeach
         </tbody>
     </table>
+    <a href="{{url('admin/class/create')}}" class="btn btn-sm btn-warning">Add class</a>
     </div>
   </div>
         

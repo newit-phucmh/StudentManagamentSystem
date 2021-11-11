@@ -26,8 +26,6 @@
             <div class="row justify-content-center">
                 <section class="col-md-8">
                     @include("studentslist")
-                    @include("classlist")
-                    @include("courseslist")
                 </section>
             </div>
         </div>

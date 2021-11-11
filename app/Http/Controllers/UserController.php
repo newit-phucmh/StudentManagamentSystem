@@ -23,9 +23,7 @@ class UserController extends Controller
     public function index()
     {
         $students = User::all();
-        $courses = Course::all();
-        $classes = ClassObject::all();
-        return view('admin.student', ['students' => $students, 'classes'=>$classes, 'courses' => $courses, 'layout'=> 'index']);
+        return view('admin.student', ['students' => $students, 'layout'=> 'index']);
     }
 
     /**
@@ -62,7 +60,7 @@ class UserController extends Controller
         $student->password = Hash::make($request->input('password'));
         $save=$student->save();
         if ($save){
-            return redirect('admin/');
+            return redirect('admin/student');
         } else {
             return view('admin.student', ['students' => $students, 'layout'=> 'create']);
         }
@@ -118,7 +116,7 @@ class UserController extends Controller
         $save = $student->save();
 
         if ($save){
-            return redirect('admin/');
+            return redirect('admin/student');
         } else {
             return view('admin.student', ['students' => $students, 'layout'=> 'edit']);
         }
@@ -134,7 +132,7 @@ class UserController extends Controller
     {
         $student = User::find($id);
         $student->delete();
-        return redirect('admin/');
+        return redirect('admin/student');
     }
 
     

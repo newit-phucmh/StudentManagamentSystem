@@ -60,7 +60,7 @@ class CourseController extends Controller
         $save=$course->save();
 
         if ($save){
-            return redirect('/admin');
+            return redirect('/admin/home');
         } else {
             return view('admin.course',['courses'=>$courses, 'layout'=>'create']);
         }
@@ -116,7 +116,7 @@ class CourseController extends Controller
         $save=$course->save();
 
         if ($save){
-            return redirect('/admin');
+            return redirect('/admin/course');
         } else {
             return view('admin.course',['courses'=>$courses, 'layout'=>'edit']);
         }
@@ -132,6 +132,6 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
         $course->delete();
-        return redirect('/admin');
+        return redirect('/admin/course');
     }
 }
