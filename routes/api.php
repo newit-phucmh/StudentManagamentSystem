@@ -28,7 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware'=>['auth:api']], function(){
     Route::get('/student', [ClassController::class, 'getUser']);
     Route::post('/student/checkin', [CheckinController::class, 'checkin']);
-    Route::get('/student/profile', [ClassController::class, 'get']);
+    Route::get('/student/profile/{id}', [UserController::class, 'getProfile']);
 });
 
 

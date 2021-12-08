@@ -191,6 +191,27 @@ class UserController extends Controller
         }
     }
 
+    function getProfile($id)
+    {
+       $user = User::where('id', '=', $id)->first();
+       if (!$user) {
+           return response()->json('User not found', 200);
+       } else {
+           $class = User::find($id)->classObject;
+           return response()->json(
+                [
+                    'first_name'=>$user->firstName,
+                    'last_name' => $user->lastName,
+                    'id' => $user->id,
+                    'class_name' => $class -> class_name,
+                    'class_id' => $user->class_object_id,
+                    'age' => $user -> age,
+                    'email'=> $user -> email
+                ], 
+               200);
+       }
+    }
+
     
     /**
      * Log the user out (Invalidate the token).
@@ -203,17 +224,18 @@ class UserController extends Controller
     }
 
     protected function createNewToken($token){
+        $user = auth()->user();
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL(),
-            'user' => auth()->user()
+            'user_id' => $user->id,
         ]);
     }
 
-    public function getClass()
+    public function getClass($id)
     {
-        $class = User::find(1)->class;
+        $class = User::find($id)->classObject;
         return $class;
     }
 

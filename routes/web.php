@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::get('/test',[App\Http\Controllers\ClassController::class,'getCourse']);
-Route::get('/test/{id}',[App\Http\Controllers\CourseController::class,'getClass']);
+Route::get('/test/{id}',[App\Http\Controllers\UserController::class,'getClass']);
 
 Route::post('/auth/save',[AuthenticationController::class, 'save'])->name('auth.save');
 Route::post('/auth/check',[AuthenticationController::class, 'check'])->name('auth.check');
