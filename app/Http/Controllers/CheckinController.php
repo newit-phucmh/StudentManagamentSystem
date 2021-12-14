@@ -100,8 +100,7 @@ class CheckinController extends Controller
                 }
                 
                 return response()->json([
-                    'message' => 'You are successfully check in',
-                    'checkin' => $checkin,
+                    'message' => 'You are successfully check in'
                 ], 200);
                 
                 
